@@ -31,7 +31,8 @@ class LogsResource extends JsonResource
             'avatar' =>  $this->user->avatar,
             'login_at' => ($this->login_at != null) ? date('M d, Y g:i a', strtotime($this->login_at)) : 'n/a',
             'logout_at' => ($this->logout_at != null) ? date('M d, Y g:i a', strtotime($this->logout_at)) : 'n/a',
-            'type' => $type
+            'type' => $type,
+            'location' => $this->location
         ];
     }
 }
