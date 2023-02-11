@@ -148,18 +148,18 @@ return [
 
     'default_location' => [
         'ip' => '127.0.0.0',
-        'iso_code' => 'US',
-        'country' => 'United States',
-        'city' => 'New Haven',
-        'state' => 'CT',
-        'state_name' => 'Connecticut',
+        'iso_code' => 'PH',
+        'country' => 'Philippines',
+        'city' => 'Zamboanga City',
+        'state' => '09',
+        'state_name' => 'Zamboanga Peninsula',
         'postal_code' => '06510',
-        'lat' => 41.31,
-        'lon' => -72.92,
-        'timezone' => 'America/New_York',
-        'continent' => 'NA',
+        'lat' => 6.9067,
+        'lon' => 122.0673,
+        'timezone' => 'Asia/Manila',
+        'continent' => 'unknown',
         'default' => true,
-        'currency' => 'USD',
+        'currency' => 'PHP',
     ],
 
 ];

@@ -7,16 +7,21 @@
             <div class="p-4 d-flex flex-column h-100">
 
                 <div class="mt-4 mb-3 border-bottom pb-2">
-                    <div class="float-end"><a class="link-primary" href="javascript:void(0);" target="_self">All Logout</a></div>
+                    <div class="float-end">
+                        <a class="link-primary" href="javascript:void(0);" target="_self">All Logout</a>
+                    </div>
                     <h5 class="card-title">Login History</h5>
                 </div>
                 <div class="d-flex align-items-center mb-3" v-for="(list, index) of logs" :key="index">
                     <div class="flex-shrink-0 avatar-sm">
-                        <div class="avatar-title bg-light text-primary rounded-3 fs-18"><i :class="'ri-'+list.type+'-line '+list.attempt"></i></div>
+                        <div class="avatar-title bg-light text-primary rounded-3 fs-18">
+                            <i :class="'ri-'+list.type+'-line '+list.attempt"></i>
+                        </div>
                     </div>
                     <div class="flex-grow-1 ms-3">
-                        <h6>{{list.platform}} ({{list.browser}})</h6>
-                        <p class="text-muted mb-0"> {{ list.ip }} - {{ list.login_at}} </p>
+                        <h6 class="mb-0">{{list.platform}} ({{list.browser}})</h6>
+                        <p class="text-muted fs-11 mb-0">  {{ list.location.state_name }}, {{ list.location.country }} </p>
+                        <p class="text-muted fs-11 mb-0" style="margin-top: -2px;"> {{ list.login_at}}</p>
                     </div>
                 </div>
             </div>
@@ -55,7 +60,7 @@
                         <table class="table align-middle position-relative table-nowrap">
                             <thead class="text-muted bg-soft-light">
                                 <tr>
-                                    <th></th>
+                                    <th width="2%"></th>
                                     <th scope="col">Name</th>
                                     <th scope="col" class="text-center">Role</th>
                                     <th scope="col" class="text-center">Status</th>
@@ -67,8 +72,10 @@
                                 <tr v-for="(list, index) of lists" :key="index">
                                     <td>
                                         <div class="avatar-xs">
-                                            <span :class="'avatar-title rounded-circle bg-'+list.g+' text-white'">{{list.lastname[0]}}</span>
+                                            <span v-if="list.avatar == 'avatar.jpg'" :class="'avatar-title rounded-circle bg-'+list.g+' text-white'">{{list.lastname[0]}}</span>
+                                            <img v-else :src="currentUrl+'/images/avatars/'+list.avatar" alt="" class="avatar-xs rounded-circle">
                                         </div>
+                                        
                                     </td>
                                     <td class="fs-14 my-1 fw-medium">{{ list.name}}</td>
                                     <td class="text-center">{{ list.role }}</td>

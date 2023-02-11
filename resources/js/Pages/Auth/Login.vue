@@ -121,7 +121,7 @@ defineProps({
 });
 
 const form = useForm({
-    email: 'admin@dost.com',
+    email: 'kradjumli@gmail.com',
     password: '123456789',
     remember: false
 });

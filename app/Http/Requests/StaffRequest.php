@@ -31,7 +31,7 @@ class StaffRequest extends FormRequest
             'middlename' => 'sometimes|required|string|max:20',
             'gender' => 'sometimes|required',
             'mobile' => 'sometimes|required|numeric|unique:user_profiles,mobile,'.$this->profile_id,
-            'img' => 'nullable|image64:jpeg,jpg,png',
+            'img' => 'sometimes|required|image64:jpeg,jpg,png',
             'role' => 'sometimes|required',
         ];
     }

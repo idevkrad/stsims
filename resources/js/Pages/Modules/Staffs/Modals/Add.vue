@@ -7,69 +7,101 @@
         <div class="modal-body">
             <form class="customform">
                 <div class="row mt-4">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Firstname: <span v-if="form.errors" v-text="form.errors.firstname" class="haveerror"></span></label>
-                            <input type="text" class="form-control" v-model="user.firstname" style="text-transform: capitalize;">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Middlename: <span v-if="form.errors" v-text="form.errors.middlename" class="haveerror"></span></label>
-                            <input type="text" class="form-control" v-model="user.middlename" style="text-transform: capitalize;"> 
-                        </div>
-                    </div>
-                        <div class="col-md-4">
-                        <div class="form-group mb-3">
-                            <label>Lastname: <span v-if="form.errors" v-text="form.errors.lastname" class="haveerror"></span></label>
-                            <input type="text" class="form-control" v-model="user.lastname" style="text-transform: capitalize;">
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Email: <span v-if="form.errors" v-text="form.errors.email" class="haveerror"></span></label>
-                            <input type="email" class="form-control" v-model="user.email" style="text-transform: capitalize;">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group mb-3">
-                            <label>Mobile No.: <span v-if="form.errors" v-text="form.errors.mobile" class="haveerror"></span></label>
-                            <input type="text" class="form-control" v-model="user.mobile" style="text-transform: capitalize;">
-                        </div>
-                    </div>
-                     <div class="col-md-4" style="margin-top: -1px; margin-bottom: -15px;">
-                        <div class="row" style="margin-top: 20px;">
-                            <div class="col-md-4">
-                                <div class="custom-control custom-radio mb-3">
-                                    <input type="radio" id="customRadio1" class="custom-control-input me-2"  value="M" v-model="user.gender">
-                                    <label class="custom-control-label" for="customRadio1">Male</label>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="custom-control custom-radio mb-3">
-                                    <input type="radio" id="customRadio2" class="custom-control-input me-2" value="F" v-model="user.gender">
-                                    <label class="custom-control-label" for="customRadio2">Female</label>
+                    <div class="col-md-3">
+                        <div class="text-center">
+                            <div class="profile-user position-relative d-inline-block mx-auto mb-2">
+                                <img src="/images/users/user-dummy-img.jpg"
+                                    class="rounded-circle avatar-lg img-thumbnail user-profile-image"
+                                    alt="user-profile-image">
+                                <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
+                                    <input id="profile-img-file-input" type="file"  @change="previewImage"
+                                        class="profile-img-file-input">
+                                    <label for="profile-img-file-input"
+                                        class="profile-photo-edit avatar-xs">
+                                        <span class="avatar-title rounded-circle bg-light text-body">
+                                            <i class="ri-camera-fill"></i>
+                                        </span>
+                                    </label>
                                 </div>
                             </div>
                         </div>
-                    </div> 
-
-                    <div class="col-md-4">
-                        <div class="form-group mb-3">
-                            <label>Username: <span v-if="form.errors" v-text="form.errors.username" class="haveerror"></span></label>
-                            <input type="text" class="form-control" v-model="user.username" style="text-transform: lowercase;">
-                        </div>
                     </div>
-                    <div class="col-md-8">
-                        <div class="form-group mb-3">
-                            <label>Role: <span v-if="form.errors" v-text="form.errors.role" class="haveerror"></span></label>
-                            <Multiselect 
-                            v-model="user.role" 
-                            :options="roles"
-                            :allow-empty="false"
-                            :show-labels="false"
-                            placeholder="Select Role"/>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Firstname: <span v-if="form.errors" v-text="form.errors.firstname" class="haveerror"></span></label>
+                                    <input type="text" class="form-control" v-model="user.firstname" style="text-transform: capitalize;">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label>Middlename: <span v-if="form.errors" v-text="form.errors.middlename" class="haveerror"></span></label>
+                                    <input type="text" class="form-control" v-model="user.middlename" style="text-transform: capitalize;"> 
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label>Lastname: <span v-if="form.errors" v-text="form.errors.lastname" class="haveerror"></span></label>
+                                    <input type="text" class="form-control" v-model="user.lastname" style="text-transform: capitalize;">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label>Suffix: <span v-if="form.errors" v-text="form.errors.lastname" class="haveerror"></span></label>
+                                    <input type="text" class="form-control" v-model="user.lastname" style="text-transform: capitalize;">
+                                </div>
+                            </div>
+                             <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Email: <span v-if="form.errors" v-text="form.errors.email" class="haveerror"></span></label>
+                                    <input type="email" class="form-control" v-model="user.email" style="text-transform: capitalize;">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label>Mobile No.: <span v-if="form.errors" v-text="form.errors.mobile" class="haveerror"></span></label>
+                                    <input type="text" class="form-control" v-model="user.mobile" style="text-transform: capitalize;">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label>Username: <span v-if="form.errors" v-text="form.errors.username" class="haveerror"></span></label>
+                                    <input type="text" class="form-control" v-model="user.username" style="text-transform: lowercase;">
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="margin-top: -1px; margin-bottom: -15px;">
+                                <div class="row" style="margin-top: 20px;">
+                                    <div class="col-md-4">
+                                        <div class="custom-control custom-radio mb-3">
+                                            <input type="radio" id="customRadio1" class="custom-control-input me-2"  value="M" v-model="user.gender">
+                                            <label class="custom-control-label" for="customRadio1">Male</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="custom-control custom-radio mb-3">
+                                            <input type="radio" id="customRadio2" class="custom-control-input me-2" value="F" v-model="user.gender">
+                                            <label class="custom-control-label" for="customRadio2">Female</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="col-md-12">
+                                <div class="form-group mb-3">
+                                    <label>Role: <span v-if="form.errors" v-text="form.errors.role" class="haveerror"></span></label>
+                                    <Multiselect 
+                                    v-model="user.role" 
+                                    :options="roles"
+                                    :allow-empty="false"
+                                    :show-labels="false"
+                                    placeholder="Select Role"/>
+                                </div>
+                            </div>
+                            <progress v-if="form.progress" :value="form.progress.percentage" max="100">
+                                {{ form.progress.percentage }}%
+                            </progress>
+
                         </div>
                     </div>
 
@@ -100,7 +132,7 @@ export default {
                 middlename: '',
                 gender: '',
                 mobile: '',
-                img: '',
+                avatar: '',
                 profile_id: '',
                 role: '',
                 username: ''
@@ -115,6 +147,29 @@ export default {
         show(){
             this.showModal = true;
         },
+
+        previewImage(e) {
+            var preview = document.querySelector(".user-profile-image");
+            var file = document.querySelector(".profile-img-file-input").files[0];
+            var reader = new FileReader();
+            
+            reader.addEventListener(
+                "load",
+                function () {
+                    preview.src = reader.result;
+                },
+                false
+            );
+
+            reader.onload = (e) => {
+                this.user.avatar = e.target.result;
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        },
+
         create() {
             this.form = this.$inertia.form({
                 id: this.user.id,
@@ -127,12 +182,13 @@ export default {
                 gender: this.user.gender,
                 role: this.user.role,
                 profile_id: this.user.profile_id,
-                img: this.user.img,
+                img: this.user.avatar,
                 editable: this.editable
             })
 
             if(!this.editable){
                 this.form.post('/staffs',{
+                    forceFormData: true,
                     preserveScroll: true,
                     onSuccess: (response) => {
                         this.hide();
@@ -150,7 +206,7 @@ export default {
         hide(){
             this.showModal = false;
         }
-    }
+    },
 }
 </script>
 <style>

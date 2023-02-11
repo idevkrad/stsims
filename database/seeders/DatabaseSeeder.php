@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         \DB::table('users')->insert([
             'username' => 'administrator',
-            'email' => 'admin@dost.com',
+            'email' => 'kradjumli@gmail.com',
             'password' => bcrypt('123456789'),
             'role' => 'Administrator',
             'avatar' => 'administrator.png',
