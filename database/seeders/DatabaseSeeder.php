@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('123456789'),
             'role' => 'Administrator',
             'avatar' => 'administrator.png',
-            'is_active' => 1,
+            'is_active' => 0,
             'created_at' => now(),
             'updated_at' => now(),
             'email_verified_at' => now(),
@@ -37,5 +37,7 @@ class DatabaseSeeder extends Seeder
             'updated_at' => now(),
         ]);
        
+        $this->call(UsersTableSeeder::class);
+        $this->call(UserProfilesTableSeeder::class);
     }
 }

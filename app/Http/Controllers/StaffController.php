@@ -77,4 +77,18 @@ class StaffController extends Controller
         // $data = new StaffResource(User::findOrFail($request->staff));
         // return inertia('Modules/Staffs/Profile',['user' => $data]);
     }
+
+    public function update(Request $request)
+    {   
+        $data = \DB::transaction(function () use ($request){
+            $user = User::findOrFail($request->id);
+            if($request->type === 'verify'){
+                $user->verify();
+            }else{
+                $user->update($request->except('img','editable'));
+            }
+        });
+        return true;
+
+    }
 }

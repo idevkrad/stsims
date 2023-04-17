@@ -98,9 +98,6 @@
                                     placeholder="Select Role"/>
                                 </div>
                             </div>
-                            <progress v-if="form.progress" :value="form.progress.percentage" max="100">
-                                {{ form.progress.percentage }}%
-                            </progress>
 
                         </div>
                     </div>

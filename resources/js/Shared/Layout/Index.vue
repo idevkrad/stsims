@@ -1,6 +1,6 @@
 <template>
     <Vertical> <slot/> </Vertical>
-    <b-modal v-model="message" hide-footer class="v-modal-custom" body-class="p-0" centered
+    <b-modal v-model="message" hide-footer class="v-modal-custom" modal-class="zoomIn" body-class="p-0" centered
         hide-header-close>
         <div class="text-center px-5 pt-4">
             <div class="text-end">
@@ -17,9 +17,8 @@
             </div>
         </div>
         <div class="modal-footer bg-light p-3 mt-5 justify-content-center">
-            <p class="mb-0 text-muted">You like our service? <b-link href="javascript:void(0)"
-                    class="link-secondary fw-semibold">Invite
-                    Friends</b-link>
+            <p class="mb-0 text-muted">Any suggestions please contact
+                <b-link href="fb.com/rjumli.gov" target="_blank" class="link-secondary fw-semibold">Administrator</b-link>
             </p>
         </div>
     </b-modal>

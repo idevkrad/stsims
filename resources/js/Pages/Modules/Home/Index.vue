@@ -94,7 +94,7 @@
         },
         data() {
             return {
-                title: "Dasboard",
+                title: "Dashboard",
                 items: [{
                         text: "View",
                         href: "/",

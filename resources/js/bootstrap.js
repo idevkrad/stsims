@@ -10,6 +10,7 @@ window._ = _;
 import axios from 'axios';
 window.axios = axios;
 
+import 'vue3-loading-overlay/dist/vue3-loading-overlay.css';
 import '@suadelabs/vue3-multiselect/dist/vue3-multiselect.css';
 import "flatpickr/dist/flatpickr.css";
 

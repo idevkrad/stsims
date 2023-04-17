@@ -4,30 +4,7 @@
     <div class="chat-wrapper d-lg-flex gap-1 mx-n4 mt-n4 p-1">
 
         <div class="file-manager-sidebar">
-            <div class="p-4 d-flex flex-column h-100">
-
-                <div class="mt-4 mb-3 border-bottom pb-2">
-                    <div class="float-end">
-                        <a class="link-primary" href="javascript:void(0);" target="_self">All Logout</a>
-                    </div>
-                    <h5 class="card-title">Login History</h5>
-                </div>
-                <div class="d-flex align-items-center mb-3" v-for="(list, index) of logs" :key="index">
-                    <div class="flex-shrink-0 avatar-sm">
-                        <div class="avatar-title bg-light text-primary rounded-3 fs-18">
-                            <i :class="'ri-'+list.type+'-line '+list.attempt"></i>
-                        </div>
-                    </div>
-                    <div class="flex-grow-1 ms-3">
-                        <h6 class="mb-0">{{list.platform}} ({{list.browser}})</h6>
-                        <p class="text-muted fs-11 mb-0">  {{ list.location.state_name }}, {{ list.location.country }} </p>
-                        <p class="text-muted fs-11 mb-0" style="margin-top: -2px;"> {{ list.login_at}}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-                    
-            <div>   
+            <History />
         </div>
             
         <div class="file-manager-content w-100 p-4 pb-0" style="height: calc(100vh - 180px)">
@@ -58,7 +35,7 @@
                 <div class="todo-task" id="todo-task" v-else>
                     <div class="table-responsive">
                         <table class="table align-middle position-relative table-nowrap">
-                            <thead class="text-muted bg-soft-light">
+                            <thead class="bg-soft-light">
                                 <tr>
                                     <th width="2%"></th>
                                     <th scope="col">Name</th>
@@ -80,14 +57,16 @@
                                     <td class="fs-14 my-1 fw-medium">{{ list.name}}</td>
                                     <td class="text-center">{{ list.role }}</td>
                                     <td class="text-center">
-                                        <span v-if="list.is_active == 1" class="badge bg-success fs-11">Active</span>
-                                        <span v-else class="badge bg-danger fs-11">Inactive</span>
+                                        <span v-if="list.is_active == 1" class="badge bg-success fs-10">Active</span>
+                                        <span v-else class="badge bg-danger fs-10">Inactive</span>
                                     </td>
                                     <td class="text-end">
+                                        <b-button variant="soft-success" @click="update('status',list)" v-b-tooltip.hover title="Lock" size="sm" class="remove-list me-1"><i class="ri-lock-2-fill align-bottom"></i></b-button>
+                                        <b-button variant="soft-warning"  @click="update('verify',list)" v-b-tooltip.hover title="Verify" size="sm" class="remove-list me-1"><i class="ri-mail-send-fill align-bottom"></i></b-button>
                                         <Link :href="'students/'+list.id">
-                                        <b-button variant="soft-danger" size="sm" class="remove-list me-1"><i class="ri-eye-fill align-bottom"></i></b-button>
+                                        <b-button variant="soft-danger" v-b-tooltip.hover title="View" size="sm" class="remove-list me-1"><i class="ri-eye-fill align-bottom"></i></b-button>
                                         </Link>
-                                        <b-button variant="primary" size="sm" class="edit-list"><i class="ri-pencil-fill align-bottom"></i> </b-button>
+                                        <b-button variant="soft-primary" v-b-tooltip.hover title="Edit" size="sm" class="edit-list"><i class="ri-pencil-fill align-bottom"></i> </b-button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -103,14 +82,18 @@
         </div>
     </div>
 <Add ref="new"/>
+<Update ref="update"/>
 </template>
 <script>
+import History from './History.vue';
+import Lists from './Lists.vue';
 import Add from './Modals/Add.vue';
+import Update from './Modals/Update.vue';
 import Multiselect from '@suadelabs/vue3-multiselect';
 import PageHeader from "@/Shared/Components/PageHeader.vue";
 import flatPickr from "vue-flatpickr-component";
 export default {
-    components : { PageHeader, Multiselect, flatPickr, Add },
+    components : { PageHeader, Multiselect, flatPickr, Add, Update, Lists, History },
     page: {
         title: "List of Staffs",
         meta: [{ name: "description" }],
@@ -120,7 +103,6 @@ export default {
             currentUrl: window.location.origin,
             title: "List of Staffs",
             items: [{text: "Lists",href: "/",},{text: "Staff",active: true,},],
-            logs: [],
             lists : [],
             meta: {},
             links: {},
@@ -128,7 +110,6 @@ export default {
     },
     created(){
         this.fetch();
-        this.fetchLogs();
     },
     methods : {
         add(){
@@ -155,18 +136,16 @@ export default {
             .catch(err => console.log(err));
         },
 
-        fetchLogs(){
-            axios.get(this.currentUrl+'/staffs/logs')
-            .then(response => {this.logs = response.data.data;})
-            .catch(err => console.log(err));
-        },
+        update(type,data){
+            this.$refs.update.show(type,data);
+        }
     }
 }
 </script>
 <style>
 .file-manager-sidebar {
-  min-width: 500px;
-  max-width: 500px;
+  min-width: 450px;
+  max-width: 450px;
   height: calc(100vh - 180px);
 }
 </style>

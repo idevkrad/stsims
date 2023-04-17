@@ -40,7 +40,7 @@
                         <b-alert v-model="authError" variant="danger" class="mt-3" dismissible>{{ authError }}</b-alert>
 
                         <div>
-
+                            
                         </div>
 
                         <form @submit.prevent="submit">
@@ -78,10 +78,10 @@
                             </div>
 
                             <div class="mt-4">
-                                 <div v-if="Object.keys(form.errors).length != 0" class="alert alert-warning text-center mt-4 mb-4" role="alert" v-text="form.errors.email"></div>
-                            <b-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing" variant="success" class="w-100" type="submit">
-                                Sign In
-                            </b-button>
+                                <div v-if="Object.keys(form.errors).length != 0" class="alert alert-warning text-center mt-4 mb-4" role="alert" v-text="form.errors.email"></div>
+                                <b-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing" variant="success" class="w-100" type="submit">
+                                    Sign In
+                                </b-button>
                             </div>
 
                         </form>

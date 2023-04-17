@@ -4,6 +4,7 @@ import { createApp, h } from 'vue'
 import { createInertiaApp, Link, Head } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from "@inertiajs/progress";
 
+import VueApexCharts from "vue3-apexcharts";
 import BootstrapVue3 from 'bootstrap-vue-3';
 import Layout from "@/Shared/Layout/Index";
 
@@ -21,6 +22,7 @@ createInertiaApp({
             })
             .use(plugin)
             .use(BootstrapVue3)
+            .use(VueApexCharts)
             .component("Link", Link)
             .component("Head", Head)
             .mount(el)
@@ -28,7 +30,3 @@ createInertiaApp({
     title: title => `STSIMS | ${title}`
 })
 
-InertiaProgress.init({
-    color: "red",
-    showSpinner: true,
-});
